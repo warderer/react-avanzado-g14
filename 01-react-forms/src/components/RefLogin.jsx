@@ -4,6 +4,16 @@ import logo from '../logo.svg'
 const RefLogin = () => {
     const form = useRef(null)
 
+    const handleSubmit = (event) => {
+        event.preventDefault() // Esto hace que no se recargue la página
+        const formData = new FormData(form.current)
+        const data = {
+            username: formData.get('email'),
+            password: formData.get('password')
+        }
+        console.log(data)
+    }
+
     return (
         <div className='login'>
             <div className='login-container'>
