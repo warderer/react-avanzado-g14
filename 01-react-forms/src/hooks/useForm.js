@@ -17,7 +17,7 @@ function useForm(callback, defaults) {
         setInput({...defaults}) //spread operator
     },[])
 
-    handleInputChange = (event) => {
+    const handleInputChange = (event) => {
         const { name, value } = event.target
         // Equivalente a:
         // const name = event.target.name
@@ -26,7 +26,7 @@ function useForm(callback, defaults) {
         setInput({...input, [name]: value}) //actualizo la data
     }
 
-    handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault() // Esto hace que no se recargue la página
         callback(input)
     }
