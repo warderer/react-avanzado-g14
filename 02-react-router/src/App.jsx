@@ -5,7 +5,7 @@
 // 04. Instalar react router dom: npm i react-router-dom
 // 05. Copiar el código de este archivo a su App.jsx
 // 06. Opcional: Copiar estilos indicados en App.css a su proyecto
-
+import { Routes, Route } from 'react-router-dom'
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -26,9 +26,14 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Home />
-        <Portafolio />
-        <Contacto />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/portafolio" element={<Portafolio />} />
+          <Route path="/contacto" element={<Contacto />} />
+        </Routes>
+        
+        
+        
       </header>
     </div>
   );
