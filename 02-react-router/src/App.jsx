@@ -5,7 +5,7 @@
 // 04. Instalar react router dom: npm i react-router-dom
 // 05. Copiar el código de este archivo a su App.jsx
 // 06. Opcional: Copiar estilos indicados en App.css a su proyecto
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -15,14 +15,17 @@ function App() {
       <header className="App-header">
         <nav>
           <ul>
+            {/* En React no usamos la etiqueta A para los enlaces, ya que
+            esta recargaría la página, entonces usamos el componente Link
+            de React Router DOM en su lugar. Y en vez del atributo href usamos "to"*/}
             <li>
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="/portafolio">Portafolio</a>
+              <Link to="/portafolio">Portafolio</Link>
             </li>
             <li>
-              <a href="/contacto">Contacto</a>
+              <Link to="/contacto">Contacto</Link>
             </li>
           </ul>
         </nav>
