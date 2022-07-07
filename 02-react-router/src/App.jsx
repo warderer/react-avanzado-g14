@@ -5,7 +5,7 @@
 // 04. Instalar react router dom: npm i react-router-dom
 // 05. Copiar el código de este archivo a su App.jsx
 // 06. Opcional: Copiar estilos indicados en App.css a su proyecto
-import { Routes, Route, Link, useLocation, useParams, Outlet } from "react-router-dom";
+import { Routes, Route, Link, useLocation, useParams, Outlet, useNavigate } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -86,7 +86,8 @@ function PortafolioDetalle() {
       desc: "Consumir la PokéAPI y mostrar un listado de Pokémons con HTML, CSS, y JS ",
     },
   ]
-  let { pid } = useParams();
+  let { pid } = useParams()
+  const navigate = useNavigate()
 
   return (
     <>
@@ -94,6 +95,16 @@ function PortafolioDetalle() {
       <h3>ID: { proyectos[pid-1].id }</h3>
       <h3>Nombre: { proyectos[pid-1].nombre }</h3>
       <h3>Descripción: { proyectos[pid-1].desc }</h3>
+      <button onClick={()=>{
+        /* <Link to="/portafolio" no funcionaria.
+        Cuando quiero usar un enlace dentro de una lógica de JS
+        Necesito usar useNavigate (react router v6) */
+        navigate('/portafolio')
+        // Si quiero ir a la página anterior del historial: navigate(-1)
+        // Si quiero ir a la página siguiente del historial: navigate(1)
+      }}>
+        Nos vamos al Portafolio
+      </button>
     </>
   );
 }
