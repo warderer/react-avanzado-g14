@@ -1,7 +1,7 @@
 import './home.css'
 import SongList from '@/components/SongList'
 import SongDetails from '@/components/SongDetails'
-import { SongProvider } from '@/context/SongProvider'
+import { SongProvider } from '@/context/SongContext'
 
 const Home = () => {
   return (
