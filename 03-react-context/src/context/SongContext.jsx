@@ -15,6 +15,8 @@ function SongProvider (props) {
   const [list, setList] = useState([]) // data de la API.
   const [loading, setLoading] = useState(true) // Nos indica cuando los datos esten disponibles.
   const [selectedSong, setSelectedSong] = useState({}) // Nos dira que canción esta seleccionada
+  const [search, setSearch] = useState('')
+
   // Simulo la llamada a la API de la lista de canciones
   useEffect(() => {
     setTimeout(() => {
@@ -28,7 +30,9 @@ function SongProvider (props) {
     list,
     selectedSong,
     setSelectedSong,
-    loading
+    loading,
+    search,
+    setSearch
   }
 
   // Siempre se llamava value el prop del Provider con la data.

@@ -18,12 +18,17 @@ const Header = () => {
       : context.setSelectedSong(context.list[context.list.length - 1])
   }
 
+  const handleSearch = (e) => {
+    context.setSearch(e.target.value)
+  }
+
   return (
     song.title
       ? (
         <div>Now Playing: {song.title} - {song.artist}
           <button onClick={prevSong}> Prev </button>
           <button onClick={nextSong}> Next </button>
+          <input type='search' onChange={handleSearch} />
         </div>
         )
       : <div>Select a Song</div>
