@@ -1,9 +1,15 @@
+import { BrowserRouter as Router } from 'react-router-dom'
+import { Navbar } from './components/Navbar'
+import RoutesIndex from './routes'
 import './App.css'
 
 function App () {
   return (
     <>
-      <h1>React Auth</h1>
+      <Router>
+        <Navbar />
+        <RoutesIndex />
+      </Router>
     </>
   )
 }
