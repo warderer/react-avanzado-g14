@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path' // #1 Añado el Path
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // #2 Configuraba el Alias para mis carpetas
+  // Configuro Alias para mis Carpetas
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
