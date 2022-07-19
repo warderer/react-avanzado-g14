@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom'
+import useForm from '@/hooks/useForm'
+import axios from 'axios'
 import '@/assets/css/form.css'
 import logo from '@/assets/react.svg'
 
@@ -13,10 +16,41 @@ const Signup = () => {
     "role":"ADMIN" (OPCIONAL)
   }
 */
+  const navigate = useNavigate()
+  const sendData = (data) => {
+    if (data.password === data.password_confirm) {
+      // Si ambas contraseñas coinciden, implemento mi lógica
+
+      // Elimino password_confirm de mi objeto, para que no me error de Bad Request la API
+      delete data.password_confirm
+      // Hago la petición a la API
+      axios.post('https://ecomerce-master.herokuapp.com/api/v1/signup', data)
+        .then((response) => {
+          if (response.status === 200) {
+            // Cuando el usuario se crea exitosamente
+            console.log(response.status)
+            navigate('/login')
+          }
+        }).catch((error) => {
+          console.log(error.message)
+        })
+    } else {
+      console.log('Passwords no coinciden')
+    }
+  }
+  // Comenzar a usar useForm y declarar los valores iniciales para evitar problemas en el renderizado de componentes controlados
+  const { input, handleInputChange, handleSubmit } = useForm(sendData, {
+    first_name: '',
+    last_name: '',
+    gender: '',
+    email: '',
+    password: '',
+    password_confirm: ''
+  })
 
   return (
     <main className='form-signin w-100 m-auto'>
-      <form>
+      <form onSubmit={handleSubmit}>
         <img className='mb-4' src={logo} alt='' width='72' height='57' />
         <h1 className='h3 mb-3 fw-normal'>Please create an account</h1>
 
@@ -27,8 +61,8 @@ const Signup = () => {
             id='first_name'
             name='first_name'
             placeholder='John'
-            value=''
-            onChange={() => {}}
+            value={input.first_name}
+            onChange={handleInputChange}
           />
           <label htmlFor='first_name'>What's your name?</label>
         </div>
@@ -40,8 +74,8 @@ const Signup = () => {
             id='last_name'
             name='last_name'
             placeholder='Doe'
-            value=''
-            onChange={() => {}}
+            value={input.last_name}
+            onChange={handleInputChange}
           />
           <label htmlFor='last_name'>What's your last name?</label>
         </div>
@@ -51,8 +85,8 @@ const Signup = () => {
             className='form-select'
             id='gender'
             name='gender'
-            value=''
-            onChange={() => {}}
+            value={input.gender}
+            onChange={handleInputChange}
           >
             <option value=''>Choose...</option>
             <option value='M'>Male</option>
@@ -68,8 +102,8 @@ const Signup = () => {
             id='email'
             name='email'
             placeholder='name@example.com'
-            value=''
-            onChange={() => {}}
+            value={input.email}
+            onChange={handleInputChange}
           />
           <label htmlFor='email'>Email address</label>
         </div>
@@ -81,10 +115,23 @@ const Signup = () => {
             id='password'
             name='password'
             placeholder='Password'
-            value=''
-            onChange={() => {}}
+            value={input.password}
+            onChange={handleInputChange}
           />
           <label htmlFor='password'>Password</label>
+        </div>
+
+        <div className='form-floating'>
+          <input
+            type='password'
+            className='form-control'
+            id='password_confirm'
+            name='password_confirm'
+            placeholder='Password'
+            value={input.password_confirm}
+            onChange={handleInputChange}
+          />
+          <label htmlFor='password_confirm'>Repeat your Password</label>
         </div>
 
         <button className='w-100 btn btn-lg btn-primary' type='submit'>Sign in</button>
