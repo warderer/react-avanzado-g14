@@ -1,11 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { Home, Login, Secret, Signup } from '@/pages'
-
-// Componente que hara Logout
-const Logout = () => {
-  window.localStorage.removeItem('token')
-  return <Navigate to='/' />
-}
+import { Routes, Route } from 'react-router-dom'
+import { Home, Login, Secret, Signup, Logout } from '@/pages'
 
 const RoutesIndex = () => {
   return (
