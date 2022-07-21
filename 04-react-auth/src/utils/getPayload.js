@@ -1,6 +1,6 @@
-export default function () {
+export default function (token) {
   // Obtener el token del LocalStorage
-  const token = window.localStorage.getItem('token')
+  // const token = window.localStorage.getItem('token')
 
   if (token) {
     // Extraer el Payload del JWT
