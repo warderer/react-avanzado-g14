@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+import { AuthContext } from '@/context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import useForm from '@/hooks/useForm'
 import axios from 'axios'
@@ -6,6 +8,7 @@ import logo from '@/assets/react.svg'
 
 const Login = () => {
   const navigate = useNavigate()
+  const { loginUser } = useContext(AuthContext)
 
   const sendData = (data) => {
     // Hago la petición a la API
@@ -16,7 +19,8 @@ const Login = () => {
           console.log(response.data)
           // Guardar el token en el localStorage del Navegador
           // Este token permanece aún si el navegador se cierra y vuelve a abrir.
-          window.localStorage.setItem('token', response.data.token)
+          // window.localStorage.setItem('token', response.data.token)
+          loginUser(response.data.token)
           navigate('/')
         }
       }).catch((error) => {
